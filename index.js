@@ -17,7 +17,7 @@ const app = Express()
 
 
 app.use(cors({
-    origin: "https://google-drive-clones.netlify.app/"
+    origin: "https://google-drive-clones.netlify.app/signup"
 }))
 
 app.use(Express.json())
