@@ -15,7 +15,7 @@ dotenv.config()
 const app = Express()
 
 app.use(cors({
-    origin:"http://localhost:5173/"
+    origin:"https://google-drive-clones.netlify.app/"
 }))
 
 app.use(Express.json())
@@ -80,6 +80,10 @@ app.use("/files",fileRoute)
 
 
 //server connection
+
+app.use("/",(req,res)=>{
+    res.send("Connected to cyclic server")
+})
 
 app.listen(PORT,()=>{
     console.log("Server started")
