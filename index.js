@@ -20,7 +20,7 @@ app.use((req, res, next) => {
   });
 
 app.use(cors({
-    origin:"*"
+    origin:["https://google-drive-clones.netlify.app/login","https://google-drive-clones.netlify.app/register","https://google-drive-clones.netlify.app/"]
 }))
 
 app.use(Express.json())
