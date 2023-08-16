@@ -36,7 +36,7 @@ export const login = async(req,res)=>{
 
     try {
 
-        const user = await User.findOne({namw:req.body.name})
+        const user = await User.findOne({name:req.body.name})
 
         if(!user) return res.status(404).json("User hasnot been created")
 
