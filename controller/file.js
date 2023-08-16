@@ -29,14 +29,32 @@ export const uploadFiles = async (req, res) => {
 export const editFile = async (req, res) => {
   try {
     const { id } = req.params;
-    const deleteFolder = await File.findByIdAndDelete(id);
+    const edit = await File.updateOne({_id:id},{
+      $set:{
+        fileName:rename
+      }
+    });
 
-    if (!deleteFolder) return res.status(500).json("File not found");
+    if (!edit) return res.status(500).json("File not found");
 
-    res.status(200).json(deleteFolder);
+    res.status(200).json("File name changed");
   } catch (error) {
     console.log(error);
   }
 };
 
-export const deleteFile = async (req, res) => {};
+export const deleteFile = async (req, res) => {
+  try {
+    const {id} = req.params
+    const delFile = await File.findByIdAndDelete(id)
+    
+
+    if(!delFile) return res.status(500).json("Folder not found")
+
+    res.status(200).json(delFile)
+
+    
+} catch (error) {
+    console.log(error)
+}
+};

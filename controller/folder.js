@@ -31,9 +31,9 @@ export const createFolder = async(req,res)=>{
 
     const{folderName,owner} = req.body;
 
-    const folder = await Folder.findOne({folderName})
+    
 
-    if(folder) return res.status(500).json("Folder with similar name already exist")
+    
 
     const newFolder = new Folder({folderName,owner})
     const user = await newFolder.save()
@@ -51,14 +51,22 @@ export const editFolder = async(req,res)=>{
 
     try {
         const{id} = req.params
-        const{folderName} = req.body
-        const edit = await Folder.findByIdAndUpdate(id,folderName)
-
+        
+       
+        const{rename} = req.body
+        
+        const edit = await Folder.updateOne({_id:id},{
+            $set:{
+                folderName:rename
+            }
+        }
+        )
+       
         if(!edit) return res.status(500).json("Folder not found")
         res.status(200).json("Folder name updated")
         
     } catch (error) {
-        console.log("error")
+        console.log(error)
         
     }
 
@@ -70,6 +78,7 @@ export const deleteFolder = async(req,res)=>{
     try {
         const {id} = req.params
         const deleteFolder = await Folder.findByIdAndDelete(id)
+        
 
         if(!deleteFolder) return res.status(500).json("Folder not found")
 
