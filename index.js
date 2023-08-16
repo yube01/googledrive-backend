@@ -15,7 +15,7 @@ dotenv.config()
 const app = Express()
 
 app.use(cors({
-    origin:"https://google-drive-clones.netlify.app/"
+    origin:"*"
 }))
 
 app.use(Express.json())
