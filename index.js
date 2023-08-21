@@ -7,6 +7,7 @@ import folderRoute from "./routes/folderRoute.js"
 import fileRoute from "./routes/fileRoute.js"
 // import multer from "multer"
 // import { File } from "./model/file.js";
+import {cleanup} from "./cleanup/cleanup.js"
 
 
 
@@ -28,7 +29,10 @@ const PORT = process.env.PORT
 
 // database connection
 mongoose.connect(process.env.MONGO)
-.then(()=>console.log("DB connected"))
+.then(()=>{console.log("DB connected")
+console.log('Starting cleanup task...')
+    cleanup(); }
+)
 .catch((err)=> console.log(err))
 
 

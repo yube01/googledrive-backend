@@ -3,9 +3,7 @@ import mongoose from "mongoose";
 
 const folder = new mongoose.Schema({
     folderName:{
-        type:String,
-        
-        unique:true
+        type:String
     },
     owner:{
         type:String,

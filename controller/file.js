@@ -1,3 +1,4 @@
+import { Delete } from "../model/deletedFolder.js";
 import { File } from "../model/file.js";
 
 export const getFiles = async (req, res) => {
@@ -8,7 +9,9 @@ export const getFiles = async (req, res) => {
     } else {
       return res.status(500).json("Folder has not been created");
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 export const uploadFiles = async (req, res) => {
@@ -50,6 +53,9 @@ export const deleteFile = async (req, res) => {
     
 
     if(!delFile) return res.status(500).json("Folder not found")
+
+    const deletedFolder = new Delete({ folderName, owner });
+    await deletedFolder.save();
 
     res.status(200).json(delFile)
 
